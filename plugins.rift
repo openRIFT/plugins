@@ -1,2 +1,2 @@
-test-plugin;https://openrift.github.io/plugins/test-plugin.py
-rift-about;https://openrift.github.io/plugins/about.py
+test-plugin;https://raw.githubusercontent.com/openRIFT/plugins/main/test-plugin.py
+rift-about;https://raw.githubusercontent.com/openRIFT/plugins/main/about.py
