@@ -1,2 +1,3 @@
 test-plugin;https://raw.githubusercontent.com/openRIFT/plugins/main/test-plugin.py
 rift-about;https://raw.githubusercontent.com/openRIFT/plugins/main/about.py
+rift-help;https://raw.githubusercontent.com/openRIFT/plugins/main/help.py
