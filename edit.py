@@ -18,6 +18,7 @@ import json
 # Variables
 listItem = 0
 lines = []
+homeFolder = os.path.expanduser('~')
 
 # Determine clear command
 if platform.system() == 'Windows':
@@ -41,17 +42,17 @@ def makeConfig():
         "AudioPlayer": "vlc",
 
         "DownloadsFolder": "@HOME/Documents/",
-        "ProgramFiles": "rift/"
+        "ProgramFiles": f"{homeFolder}/.rift/"
     }
 
     cfgdump = json.dumps(configcontents, indent=4)
-    f = open("rift/config.json", "w+")
+    f = open(f"{homeFolder}/.rift/config.json", "w+")
     f.write(cfgdump)
     f.close()
 
 # Load config
 def loadConfig():
-    f = open("rift/config.json", "r")
+    f = open(f"{homeFolder}/.rift/config.json", "r")
     tmp_j = f.read()
     cfginfo = json.loads(tmp_j)
 
@@ -201,7 +202,7 @@ def nerdFontGrabber(fileEx):
     if not NerdFontIcons:
         return ''
 
-    f = open("rift/fileicons.json", "r")
+    f = open(f"{homeFolder}/.rift/plugins/nerdfont.json", "r")
     nerd_json = f.read()
     iconList = json.loads(nerd_json)
 
@@ -213,7 +214,7 @@ def nerdFontGrabber(fileEx):
 
     
 # Checks if config file exists
-if os.path.isfile('rift/config.json') is False:
+if os.path.isfile(f'{homeFolder}/.rift/config.json') is False:
     makeConfig()
 
 # Load Config
