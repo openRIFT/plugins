@@ -107,16 +107,16 @@ def refresh():
         if i == listItem:
             try:
                 global fileURL
+                global fileDescription
                 fileList = fileList.split(';')
                 fileURL = fileList[1]
                 fileURL = fileURL.replace('\n', '')
+                fileDescription = fileList[2]
+                fileDescription = fileDescription.replace('\n', '')
             except IndexError:
                 fileURL = ''
                 fileItem = ''
-
-            # Checks for content invalid data
-            if fileItem == '':
-                print(f'{Fore.GREEN}{str(i + 1)}: ---')
+                fileDescription = f'{Fore.YELLOW}File entry missing metadata (May not download){Style.RESET_ALL}'
             
             
             print(f'{str(i + 1)}:{Fore.GREEN} {fileItem} [{nerdFontGrabber(os.path.basename(fileURL))}]{Back.WHITE}')
@@ -124,6 +124,8 @@ def refresh():
         else:
             print(Style.RESET_ALL + str(i + 1) + ': ' + fileItem)
         
+    print(Style.RESET_ALL + "-" * (terminalX - 2))
+    print(fileDescription)
     print(Style.RESET_ALL + "-" * (terminalX - 2))
     
     
@@ -152,8 +154,13 @@ def keyListener():
         elif command == 'append':
             nameInput = input('Label: ')
             urlInput = input('Download Link: ')
+            descInput = input('Description (Leave blank for none): ')
+
+            if descInput == '':
+                descInput = 'No Description Provided'
+
             with open(f'{ProgramFiles}/repo.rift', 'a') as repoFile:
-                repoFile.write(f'\n{nameInput};{urlInput}')
+                repoFile.write(f'\n{nameInput};{urlInput};{descInput}')
             refresh()
         # Delete
         elif command == 'del':
