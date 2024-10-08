@@ -1,2 +1,2 @@
 # plugins
-Offical plugins repository
+Offical plugins repository. Probably will be deprecated with RIFT rewrite.
